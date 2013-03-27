@@ -19,6 +19,7 @@ Puppet::Type.type(:vc_dvportgroup).provide(:vc_dvportgroup, :parent => Puppet::P
     spec.defaultPortConfig.vlan = RbVmomi::VIM::VmwareDistributedVirtualSwitchVlanIdSpec.new
     spec.defaultPortConfig.vlan.vlanId = @resource[:vlanid]
     spec.defaultPortConfig.vlan.inherited = false
+    spec.numPorts = @resource[:count]
 
     dswitch.map {|s|
       s.AddDVPortgroup_Task(:spec => [spec])

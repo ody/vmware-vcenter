@@ -54,11 +54,13 @@ class Puppet::Provider::Vcenter <  Puppet::Provider
     when RbVmomi::VIM::Folder
       folder
     when RbVmomi::VIM::Datacenter
-      folder.hostFolder
+      folder.vmFolder
     when RbVmomi::VIM::ClusterComputeResource
       folder
     when RbVmomi::VIM::ComputeResource
       folder.resourcePool
+    when RbVmomi::VIM::DistributedVirtualPortgroup
+      folder.networkFolder
     when NilClass
       raise Puppet::Error.new("Invalid path: #{@resource[:path]}.")
     else

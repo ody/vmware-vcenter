@@ -30,6 +30,10 @@ Puppet::Type.newtype(:vc_dvportgroup) do
     desc "The numeric ID for the VLAN."
   end
 
+  newparam(:count) do
+    desc "Total count of virtual ports provisioned for Portgroup"
+  end
+
   autorequire(:vc_dvs) do
     Pathname.new(self[:path]).parent.to_s
   end
